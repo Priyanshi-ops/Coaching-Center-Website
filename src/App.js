@@ -11,9 +11,10 @@ function Navbar({ menuOpen, setMenuOpen }) {
   return (
     <header className="navbar">
       <div className="logo-container">
-        <img src="/images/logo.jpg" alt="StudyArc Logo" className="logo" />
-         
-        
+        <img
+          src={process.env.PUBLIC_URL + "/images/logo.jpg"}
+          alt="Logo"
+        />
         <h1>StudyArc</h1>
       </div>
 
@@ -46,16 +47,19 @@ function Home() {
         <div className="hero-content">
           <h2>Welcome to StudyArc Coaching Centre</h2>
           <p>Classes 9 to 12</p>
-<Link to="/Course">
+          <Link to="/course">
             <button className="btn">Explore Courses</button>
-          </Link> 
-          <Link to="/admission">    
-             <button className="btn">Join Now</button>
-             </Link>
+          </Link>
+          <Link to="/admission">
+            <button className="btn">Join Now</button>
+          </Link>
         </div>
 
         <div className="hero-image">
-          <img src="/images/picone.png" alt="Student studying" />
+          <img
+            src={process.env.PUBLIC_URL + "/images/picone.png"}
+            alt="Student studying"
+          />
         </div>
       </section>
 
