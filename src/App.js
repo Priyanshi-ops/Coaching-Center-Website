@@ -163,9 +163,9 @@ function Footer() {
         <div className="footer-column">
           <h4>Follow Us</h4>
           <div className="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">LinkedIn</a>
+            <a href="https://www.facebook.com/p/Study-Arc-61571548692279/">Facebook</a>
+            <a href="https://www.instagram.com/study_arc9/">Instagram</a>
+            <a href="https://www.linkedin.com/feed/">LinkedIn</a>
           </div>
         </div>
       </div>
