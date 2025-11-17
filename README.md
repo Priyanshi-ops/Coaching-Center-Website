@@ -74,7 +74,7 @@ spring.jpa.hibernate.ddl-auto=update
 ---
 
 ## 📁 Project Structure
-
+```
 root/
 │
 ├── demo/ # Spring Boot backend
@@ -86,7 +86,7 @@ root/
 ├── src/
 ├── public/
 └── package.json
-
+```
 ---
 
 
