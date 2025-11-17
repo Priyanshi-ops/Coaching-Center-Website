@@ -25,12 +25,11 @@ Backend Source Code Folder:
 👉 model/ → Entity Classes
 👉 config/ → Security / CORS configurations
 👉 MyprojectApplication.java → Spring Boot Main Application File
-----
+##
 How to Run Backend
 1️⃣ Open project in IntelliJ / VS Code
 2️⃣ Update MySQL Configuration (if needed)
----
-
+##
 In application.properties:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/yourdbname
