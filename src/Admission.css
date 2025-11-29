@@ -1,32 +1,60 @@
+/* MAIN PAGE BACKGROUND */
 .admission-page {
   min-height: 100vh;
-   background: linear-gradient(
+  background: linear-gradient(
     rgba(198, 207, 199, 0.7),
     rgba(161, 155, 64, 0.7)
   );
-  padding: 2rem;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* TITLE */
 .admission-title {
   font-size: 2rem;
   color: #131413;
-  margin-bottom: 2rem;
-  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
 
-.admission-form {
-  background: #fdfcfd;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  width: 100%;
+/* MAIN WRAPPER */
+.admission-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Fixes footer issue */
+  gap: 2rem;
+  width: 90%;
+  max-width: 1100px;
+  margin: 2rem auto 4rem auto; /* Moves form UP & away from footer */
+}
+
+/* LEFT FORM SECTION */
+.left-form {
+  flex: 1;
   max-width: 500px;
+  background: #ffffffee;
+  padding: 1.5rem; /* reduced height */
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+
+  /* Height fix */
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+/* FORM STYLES */
+.admission-form {
+  background: #fafafa;
+  padding: 1.2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  overflow: visible;
 }
 
 .admission-form label {
@@ -52,6 +80,7 @@
   border: 1px solid #2e7d32;
 }
 
+/* SUBMIT BUTTON */
 .submit-btn {
   padding: 0.9rem;
   background: olive;
@@ -66,4 +95,72 @@
 
 .submit-btn:hover {
   background: #2e7d32;
+}
+
+/* RIGHT NOTICE BOARD SECTION */
+.right-box {
+  flex: 1;
+  background: #ffffffee;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: 3px dashed #c4b56c;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Ensures balance with left box */
+  min-height: 550px;
+}
+
+/* QUOTES WRAPPER */
+.quotes-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  width: 100%;
+  align-items: center;
+}
+
+/* PAPER QUOTE CARDS */
+.quote-card {
+  width: 90%;
+  max-width: 380px;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+  animation: floatCard 3s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* COLORFUL CARDS */
+.blue-card {
+  background: #d0e8ff;
+  color: #003c7a;
+}
+
+.green-card {
+  background: #dfffe1;
+  color: #145214;
+}
+
+.orange-card {
+  background: #ffe8c8;
+  color: #8a4b00;
+}
+
+.pink-card {
+  background: #ffd6e8;
+  color: #7a0047;
 }

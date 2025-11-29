@@ -2,12 +2,12 @@
 import "./App.css";
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+
 import Contact from "./Contact";
 import About from "./About";
 import Course from "./Course";
 import Admission from "./Admission";
 import { ReactTyped } from "react-typed";
-
 
 function Navbar({ menuOpen, setMenuOpen }) {
   return (
@@ -16,7 +16,7 @@ function Navbar({ menuOpen, setMenuOpen }) {
         <img
           src={process.env.PUBLIC_URL + "/images/logo.jpg"}
           alt="Logo"
-          className="logo"   // <-- Important: add this class
+          className="logo"
         />
         <h1>StudyArc</h1>
       </div>
@@ -24,7 +24,6 @@ function Navbar({ menuOpen, setMenuOpen }) {
       <button
         className="menu-toggle"
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle Menu"
       >
         ☰
       </button>
@@ -48,23 +47,26 @@ function Home() {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-<h2>
-  <ReactTyped
-    strings={[
-      "Welcome to StudyArc Coaching Centre",
-      "Empowering Students for Success",
-      "Classes 9 to 12 — Board & Competitive Exams"
-    ]}
-    typeSpeed={50}
-    backSpeed={30}
-    loop
-  />
-</h2>
+
+          <h2>
+            <ReactTyped
+              strings={[
+                "Welcome to StudyArc Coaching Centre",
+                "Empowering Students for Success",
+                "Classes 9 to 12 — Board & Competitive Exams"
+              ]}
+              typeSpeed={50}
+              backSpeed={30}
+              loop
+            />
+          </h2>
 
           <p>Classes 9 to 12</p>
+
           <Link to="/course">
             <button className="btn">Explore Courses</button>
           </Link>
+
           <Link to="/admission">
             <button className="btn">Join Now</button>
           </Link>
@@ -78,27 +80,15 @@ function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us */}
       <section id="why-choose-us" className="why-choose-us">
         <div className="why-content">
           <div className="reasons">
             <ul>
-              <li>
-                <span className="checkmark">✔</span>
-                Expert faculty for strong fundamentals
-              </li>
-              <li>
-                <span className="checkmark">✔</span>
-                Personalized attention for each student
-              </li>
-              <li>
-                <span className="checkmark">✔</span>
-                Comprehensive study material & assessments
-              </li>
-              <li>
-                <span className="checkmark">✔</span>
-                Focus on board & competitive exams
-              </li>
+              <li><span className="checkmark">✔</span> Expert faculty for strong fundamentals</li>
+              <li><span className="checkmark">✔</span> Personalized attention for each student</li>
+              <li><span className="checkmark">✔</span> Comprehensive study material & assessments</li>
+              <li><span className="checkmark">✔</span> Focus on board & competitive exams</li>
             </ul>
           </div>
           <div className="why-title">
@@ -106,36 +96,38 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* Achievements Section */}
-<section className="achievements">
-  <h3 className="section-title">Our Achievements</h3>
-  <div className="achievement-cards">
-    <div className="achievement-card">
-      <h2>5000+</h2>
-      <p>Students Trained</p>
-    </div>
-    <div className="achievement-card">
-      <h2>95%</h2>
-      <p>Board Exam Success Rate</p>
-    </div>
-    <div className="achievement-card">
-      <h2>20+</h2>
-      <p>Years of Excellence</p>
-    </div>
-    <div className="achievement-card">
-      <h2>50+</h2>
-      <p>Expert Teachers</p>
-    </div>
-  </div>
-</section>
 
+      {/* Achievements */}
+      <section className="achievements">
+        <h3 className="section-title">Our Achievements</h3>
+        <div className="achievement-cards">
+          <div className="achievement-card">
+            <h2>5000+</h2>
+            <p>Students Trained</p>
+          </div>
+          <div className="achievement-card">
+            <h2>95%</h2>
+            <p>Board Exam Success Rate</p>
+          </div>
+          <div className="achievement-card">
+            <h2>20+</h2>
+            <p>Years of Excellence</p>
+          </div>
+          <div className="achievement-card">
+            <h2>50+</h2>
+            <p>Expert Teachers</p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
 
+// Footer
 function Footer() {
   return (
     <footer className="footer">
+
       <div className="footer-container">
         <div className="footer-column">
           <h4>StudyArc</h4>
@@ -183,13 +175,18 @@ function App() {
   return (
     <>
       <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
       <Routes>
+        {/* ⭐ This fixes your issue */}
+        <Route path="/*" element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
+
         <Route path="/about" element={<About />} />
         <Route path="/course" element={<Course />} />
         <Route path="/admission" element={<Admission />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+
       <Footer />
     </>
   );
