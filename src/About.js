@@ -71,7 +71,7 @@ function About() {
             aria-label={`Slide ${index + 1} of ${slides.length}`}
             aria-hidden={index !== currentSlide}
           >
-            <img src={src} alt={`StudyArc students — gallery item ${index + 1}`} />
+            <img src={src} alt={`StudyArc students ${index + 1}`} />
             <div className="slide-text" aria-hidden="true">
               Who We Are
             </div>
