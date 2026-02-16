@@ -8,7 +8,7 @@ import com.myproject.demo.model.Admission;
 import com.myproject.demo.repository.AdmissionRepository;
 
 @RestController
-@RequestMapping("/api/admissions")
+@RequestMapping({"/api/admissions", "/api/admission"})
 public class AdmissionController {
 
     @Autowired

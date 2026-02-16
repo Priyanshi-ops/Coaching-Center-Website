@@ -40,7 +40,8 @@ function Admission() {
     setStatus(null);
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+      const rawUrl = process.env.REACT_APP_API_URL || "http://localhost:8080";
+      const API_URL = rawUrl.endsWith("/") ? rawUrl.slice(0, -1) : rawUrl;
       const res = await fetch(`${API_URL}/api/admissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

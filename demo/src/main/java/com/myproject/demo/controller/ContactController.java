@@ -6,7 +6,7 @@ import com.myproject.demo.model.Contact;
 import com.myproject.demo.repository.ContactRepository;
 
 @RestController
-@RequestMapping("/api/contact")
+@RequestMapping({"/api/contact", "/api/contacts"})
 public class ContactController {
 
     @Autowired

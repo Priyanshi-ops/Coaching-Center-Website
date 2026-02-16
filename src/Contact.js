@@ -29,7 +29,8 @@ function Contact() {
     }
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+      const rawUrl = process.env.REACT_APP_API_URL || "http://localhost:8080";
+      const API_URL = rawUrl.endsWith("/") ? rawUrl.slice(0, -1) : rawUrl;
       const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
