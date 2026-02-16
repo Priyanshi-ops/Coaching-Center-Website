@@ -1,188 +1,315 @@
-/* Reset default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Page Container */
+/* ===========================
+   Course Page
+   =========================== */
 .course-page {
   min-height: 100vh;
-  background: linear-gradient(
-    rgba(198, 207, 199, 0.7),
-    rgba(161, 155, 64, 0.7)
-  );
-  font-family: 'Roboto', sans-serif;
-  padding: 2rem;
+  background: var(--bg-primary);
+  padding: var(--space-4xl) var(--space-xl);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Page Title */
+.course-page::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%); /* Emerald */
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.course-page::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(132, 204, 22, 0.06) 0%, transparent 70%); /* Lime */
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ── Title ── */
 .course-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2.5rem;
-  color: #191a19;
-  font-family: 'Montserrat', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-4xl);
+  /* White by default, gradient on hover */
+  transition: all var(--duration-normal) var(--ease-out);
+  cursor: default;
 }
 
-/* Course Section Title */
-.course-section-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 2rem 0 1.5rem;
-  color: #222;
-  font-family: 'Montserrat', sans-serif;
+.course-title:hover {
+  background: var(--gradient-premium);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Course Cards Container - CSS Grid */
+.course-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-premium);
+  border-radius: var(--radius-full);
+  margin: var(--space-md) auto 0;
+}
+
+/* ── Course Grid ── */
 .course-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-  gap: 2rem;
-  max-width: 1100px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  max-width: var(--container-max);
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* Move 4th card to start under first card */
-.course-container .course-card:nth-child(4) {
-  grid-column: 1;
-}
-
-/* Individual Course Card */
+/* ── Course Card ── */
 .course-card {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 1.5rem;
+  padding: var(--space-2xl) var(--space-xl);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-premium);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-slow) var(--ease-out);
 }
 
 .course-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-  background: #f0f8f0;
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(79, 70, 229, 0.25);
+  box-shadow: var(--shadow-glow);
 }
 
-/* Icon inside card */
+.course-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Card icon */
 .course-icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 1rem;
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.15);
+  object-fit: contain;
+  transition: transform var(--duration-normal) var(--ease-spring);
 }
 
-/* Card Heading */
+.course-card:hover .course-icon {
+  transform: scale(1.15) rotate(-3deg);
+}
+
+/* Card heading */
 .course-card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  color: #2e7d32;
-  font-family: 'Montserrat', sans-serif;
+  margin-bottom: var(--space-sm);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
-/* Card Description */
+/* Card description */
 .course-card p {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+  flex-grow: 1;
 }
 
-/* Button */
+/* Card button */
 .course-card button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #fcfffc;
-  color: rgb(35, 226, 18);
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  color: var(--color-accent-light);
   cursor: pointer;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  transition: all var(--duration-normal) var(--ease-spring);
 }
 
 .course-card button:hover {
-  background-color: #256628;
-  color: #fff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .course-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-  }
+.course-card button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
-@media (max-width: 700px) {
-  .course-container {
-    grid-template-columns: 1fr; /* 1 card per row on mobile */
-  }
-}
-
-/* =======================
-   Modal Styles
-   ======================= */
+/* ===========================
+   Modal
+   =========================== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000; /* On top */
+  z-index: 2000;
+  animation: fadeIn var(--duration-fast) var(--ease-out);
 }
 
 .modal-box {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
   max-width: 500px;
   width: 90%;
   text-align: center;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: var(--shadow-lg);
+  animation: modalSlideUp var(--duration-normal) var(--ease-spring);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-box h2 {
-  margin-bottom: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  color: #2e7d32;
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+  font-size: 1.5rem;
 }
 
 .modal-box p {
   font-size: 1rem;
-  color: #444;
-  line-height: 1.5;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-xl);
 }
 
 /* Close button */
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.8rem;
-  color: #333;
+  top: var(--space-md);
+  right: var(--space-lg);
+  font-size: 1.5rem;
+  color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.3s ease;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-fast) var(--ease-out);
+  padding: 0;
+  line-height: 1;
 }
 
 .close-btn:hover {
-  color: #e53935;
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+  border-color: rgba(239, 68, 68, 0.3);
+  transform: rotate(90deg);
 }
 
-/* Fade In Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+.close-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Enroll button */
+.enroll-btn {
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-spring);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+}
+
+.enroll-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+}
+
+.enroll-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 1024px) {
+  .course-container {
+    grid-template-columns: repeat(2, 1fr);
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+}
+
+@media (max-width: 700px) {
+  .course-container {
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
+
+  .course-title { font-size: 1.8rem; }
+
+  .course-page { padding: var(--space-2xl) var(--space-lg); }
 }

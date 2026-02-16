@@ -44,6 +44,8 @@ spring.jpa.hibernate.ddl-auto=update
 - Backend-powered API for courses and enrollments  
 - MySQL database connectivity  
 - Fully responsive UI
+- **Premium Emerald UI Theme** (Modern Green/White Palette)
+- Refined Typography & Layouts (Bento Grid, Split Forms)
 
 ---
 ## ⚙️ Backend Setup (Spring Boot)

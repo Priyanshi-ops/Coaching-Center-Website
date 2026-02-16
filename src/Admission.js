@@ -1,5 +1,22 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import "./Admission.css";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 function Admission() {
   const [form, setForm] = useState({
@@ -8,7 +25,7 @@ function Admission() {
     email: "",
     phone: "",
     address: "",
-    message: ""
+    message: "",
   });
 
   const [status, setStatus] = useState(null);
@@ -42,7 +59,7 @@ function Admission() {
         email: "",
         phone: "",
         address: "",
-        message: ""
+        message: "",
       });
     } catch (error) {
       setStatus({ ok: false, msg: error.message || "Submission failed" });
@@ -50,100 +67,159 @@ function Admission() {
   };
 
   return (
-    <div className="admission-container">
-      <div className="left-form">
+    <main className="admission-container" id="main-content">
+      <motion.div
+        className="left-form"
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
         <h2 className="admission-title">Admission Form</h2>
 
         {status && (
-          <div className={`status ${status.ok ? "success" : "error"}`}>
+          <div
+            className={`status ${status.ok ? "success" : "error"}`}
+            role="alert"
+            aria-live="polite"
+          >
             {status.msg}
           </div>
         )}
 
-        <form className="admission-form" onSubmit={handleSubmit}>
-          <label>Full Name</label>
-          <input
-            name="fullName"
-            type="text"
-            placeholder="Enter your full name"
-            value={form.fullName}
-            onChange={handleChange}
-            required
-          />
+        <form
+          className="admission-form"
+          onSubmit={handleSubmit}
+          aria-label="Admission application form"
+          noValidate
+        >
+          <div>
+            <label htmlFor="fullName">Full Name</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="Enter your full name"
+              value={form.fullName}
+              onChange={handleChange}
+              required
+              autoComplete="name"
+              aria-required="true"
+            />
+          </div>
 
-          <label>Class Applying For</label>
-          <select
-            name="classApplying"
-            value={form.classApplying}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Class</option>
-            <option value="9">Class 9</option>
-            <option value="10">Class 10</option>
-            <option value="11">Class 11</option>
-          </select>
+          <div>
+            <label htmlFor="classApplying">Class Applying For</label>
+            <select
+              id="classApplying"
+              name="classApplying"
+              value={form.classApplying}
+              onChange={handleChange}
+              required
+              aria-required="true"
+            >
+              <option value="">Select Class</option>
+              <option value="9">Class 9</option>
+              <option value="10">Class 10</option>
+              <option value="11">Class 11</option>
+              <option value="12">Class 12</option>
+            </select>
+          </div>
 
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              autoComplete="email"
+              aria-required="true"
+            />
+          </div>
 
-          <label>Phone</label>
-          <input
-            name="phone"
-            type="tel"
-            placeholder="Enter your phone number"
-            value={form.phone}
-            onChange={handleChange}
-            required
-          />
+          <div>
+            <label htmlFor="phone">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="Enter your phone number"
+              value={form.phone}
+              onChange={handleChange}
+              required
+              autoComplete="tel"
+              aria-required="true"
+            />
+          </div>
 
-          <label>Address</label>
-          <textarea
-            name="address"
-            placeholder="Enter your address"
-            value={form.address}
-            onChange={handleChange}
-          />
+          <div>
+            <label htmlFor="address">Address</label>
+            <textarea
+              id="address"
+              name="address"
+              placeholder="Enter your address"
+              value={form.address}
+              onChange={handleChange}
+              autoComplete="street-address"
+            />
+          </div>
 
-          <label>Message</label>
-          <textarea
-            name="message"
-            placeholder="Additional notes (optional)"
-            value={form.message}
-            onChange={handleChange}
-          />
+          <div>
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Additional notes (optional)"
+              value={form.message}
+              onChange={handleChange}
+            />
+          </div>
 
-          <button type="submit" className="submit-btn">Submit</button>
+          <button type="submit" className="submit-btn">
+            Submit Application
+          </button>
         </form>
-      </div>
+      </motion.div>
 
-      <div className="right-box">
-        <div className="quotes-wrapper">
-          <div className="quote-card blue-card">
-            “Education is the most powerful weapon you can use to change the world.”
-          </div>
-
-          <div className="quote-card green-card">
-            “The beautiful thing about learning is that no one can take it away from you.”
-          </div>
-
-          <div className="quote-card orange-card">
-            “Every student can learn, just not on the same day or in the same way.”
-          </div>
-
-          <div className="quote-card pink-card">
-            “Success is the sum of small efforts repeated day in and day out.”
-          </div>
+      <motion.div
+        className="right-box"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <div className="quotes-wrapper" aria-label="Inspirational quotes">
+          {[
+            {
+              text: "\u201CEducation is the most powerful weapon you can use to change the world.\u201D",
+              color: "blue-card",
+            },
+            {
+              text: "\u201CThe beautiful thing about learning is that no one can take it away from you.\u201D",
+              color: "green-card",
+            },
+            {
+              text: "\u201CEvery student can learn, just not on the same day or in the same way.\u201D",
+              color: "orange-card",
+            },
+            {
+              text: "\u201CSuccess is the sum of small efforts repeated day in and day out.\u201D",
+              color: "pink-card",
+            },
+          ].map((quote, i) => (
+            <motion.blockquote
+              key={i}
+              className={`quote-card ${quote.color}`}
+              variants={itemVariants}
+            >
+              {quote.text}
+            </motion.blockquote>
+          ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </main>
   );
 }
 
