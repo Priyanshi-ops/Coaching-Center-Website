@@ -2,7 +2,7 @@
 A full-stack web application for a Coaching Centre where users can view available courses and enroll online.  
 The project is built using **React (Frontend)**, **Spring Boot (Backend)** and **MySQL (Database)**.
 ---
-Live Demo Link for Frontend - https://priyanshi-ops.github.io/Coaching-centre-project/
+Live Demo Link for Frontend - https://coaching-center-website-one.vercel.app/
 to save the data in backend  .kindly  save and run the  file of spring boot 
 Folder Navigation Path:
 
