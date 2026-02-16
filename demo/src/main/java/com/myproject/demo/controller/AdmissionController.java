@@ -7,7 +7,6 @@ import java.util.List;
 import com.myproject.demo.model.Admission;
 import com.myproject.demo.repository.AdmissionRepository;
 
-@CrossOrigin(origins = "http://localhost:3000") // React app URL
 @RestController
 @RequestMapping("/api/admissions")
 public class AdmissionController {
