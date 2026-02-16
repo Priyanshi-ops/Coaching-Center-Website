@@ -1,14 +1,14 @@
-# Step 1: Use an official Java runtime as base image
-FROM eclipse-temurin:17-jdk
-
-# Step 2: Set working directory inside container
+# Step 1: Build stage
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Step 3: Copy the JAR file from the target folder into the container
-COPY target/*.jar app.jar
+# Step 2: Runtime stage
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
-# Step 4: Expose port 8080 (Spring Boot default)
+# Step 3: Expose port and run
 EXPOSE 8080
-
-# Step 5: Run the JAR file
 ENTRYPOINT ["java", "-jar", "app.jar"]
